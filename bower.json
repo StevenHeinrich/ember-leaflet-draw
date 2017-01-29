@@ -2,6 +2,8 @@
   "name": "ember-leaflet-draw",
   "dependencies": {
     "ember": "~2.8.0",
-    "ember-cli-shims": "0.1.1"
+    "ember-cli-shims": "0.1.1",
+    "leaflet": "~1.0.3",
+    "leaflet-draw": "~0.4.9"
   }
 }
