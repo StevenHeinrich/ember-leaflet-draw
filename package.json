@@ -11,11 +11,11 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "",
+  "repository": "https://github.com/StevenHeinrich/ember-leaflet-draw",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Steven Heinrich",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
@@ -35,18 +35,30 @@
     "ember-data": "^2.8.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
+    "ember-leaflet": "^3.0.9",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
     "ember-welcome-page": "^1.0.1",
     "loader.js": "^4.0.1"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-leaflet",
+    "leaflet",
+    "leaflet-draw",
+    "ember",
+    "maps",
+    "draw",
+    "polygon",
+    "point"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "after": [
+      "ember-leaflet"
+    ]
   }
 }
