@@ -1,13 +1,16 @@
 # Ember-leaflet-draw
 
-This README outlines the details of collaborating on this Ember addon.
+Provides feature drawing functionality for [Ember-Leaflet](http://ember-leaflet.com), an Ember Addon for [Leaflet](http://leafletjs.com) interactive maps.
+
+This plugin is based on the JS library [Leaflet Draw](https://github.com/Leaflet/Leaflet.draw) and basically wraps it into ember component for usage in HTMLbars templates.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-leaflet-draw`
-* `npm install`
-* `bower install`
+* `ember install ember-leaflet-draw`
+
+## Using the plugin
+
+TBD...
 
 ## Running
 
