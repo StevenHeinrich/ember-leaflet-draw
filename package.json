@@ -1,7 +1,7 @@
 {
   "name": "ember-leaflet-draw",
   "version": "0.1.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Provides feature drawing functionality for Ember-Leaflet, based on wrapping the Leaflet Draw library",
   "directories": {
     "doc": "doc",
     "test": "tests"
