@@ -69,8 +69,9 @@ A few examples of the new format are:
 
 For a full list of the Events and other API features of the underlying Leaflet Draw library, checkout the [Leaflet Draw API Documentation](https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html)
 
+#### Working directly with the L.Draw and L.DrawToolBar objects
 
-*Installing this plugin will pull in all the dependencies necessary to begin using Leaflet Draw, by extending leaflet. If you want total control to do your own thing, this may be all you need to easily bring in all dependencies and ensure everything is wired. You have access to `L.Draw` and `L.DrawToolbar` to do you own thing (for more advanced use cases).*
+Installing this plugin will pull in all the dependencies necessary to begin using Leaflet Draw, by extending leaflet. If you want total control to do your own thing, this may be all you need to easily bring in all dependencies and ensure everything is wired. You have access to `L.Draw` and `L.DrawToolbar` to do you own thing (for more advanced use cases).
 
 #### Production Builds
 In your `ember-cli-build.js` add the following snippet:
@@ -79,13 +80,13 @@ In your `ember-cli-build.js` add the following snippet:
     // Add options here
     fingerprint: {
       exclude: [
-        // You should already have these from using Ember-Leaflet
+        // You should already have these from using Ember-Leaflet (Leaflet)
         'images/layers-2x.png',
         'images/layers.png',
         'images/marker-icon-2x.png',
         'images/marker-icon.png',
         'images/marker-shadow.png',
-        // These are additional images used by Ember-Leaflet-Draw
+        // These are additional images used by Ember-Leaflet-Draw (Leaflet.draw)
         'images/spritesheet-2x.png',
         'images/spritesheet.png',
         'images/spritesheet.svg'
