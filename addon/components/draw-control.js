@@ -3,11 +3,19 @@ import BaseLayer from 'ember-leaflet/components/base-layer';
 
 export default BaseLayer.extend({
   leafletEvents: [
+    'draw:created',
     'draw:edited',
     'draw:editmove',
+    'draw:editresize ',
     'draw:editstart',
     'draw:editstop',
-    'draw:editvertex'
+    'draw:editvertex',
+    'draw:deleted',
+    'draw:deletestart',
+    'draw:deletestop ',
+    'draw:drawstart',
+    'draw:drawstop ',
+    'draw:drawvertex '
   ],
 
   leafletOptions: [
