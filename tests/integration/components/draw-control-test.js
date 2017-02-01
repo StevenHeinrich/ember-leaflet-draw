@@ -1,9 +1,18 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import DrawControlComponent from 'ember-leaflet-draw/components/draw-control';
+let drawControl;
 
 moduleForComponent('draw-control', 'Integration | Component | draw control', {
   integration: true,
   beforeEach() {
+    this.register('component:draw-control', DrawControlComponent.extend({
+      init() {
+        this._super(...arguments);
+        drawControl = this;
+      }
+    }));
+
     // Set any properties with this.set('myProperty', 'value');
     this.setProperties({
       lat: 38,
@@ -87,12 +96,36 @@ test('it has deafult value for enableEditing set to true', function(assert) {
 });
 
 test('it responds to boolean option for showDrawingLayer', function(assert) {
-  assert.expect(4);
+  assert.expect(2);
 
   // Template block usage:
   this.render(hbs`
     {{#leaflet-map lat=lat lng=lng zoom=zoom}}
       {{draw-control showDrawingLayer=true}}
+    {{/leaflet-map}}
+  `);
+
+  // Ensure draw-control enables showDrawingLayer. If enabled, _layer will be created.
+  assert.ok(drawControl._layer, 'failed to find drawing layer');
+
+  // Template block usage:
+  this.render(hbs`
+    {{#leaflet-map lat=lat lng=lng zoom=zoom}}
+      {{draw-control showDrawingLayer=false}}
+    {{/leaflet-map}}
+  `);
+
+  // Ensure draw-control disables showDrawingLayer. If disabled, _layer will not be created.
+  assert.notOk(drawControl._layer, 'failed to find drawing layer');
+});
+
+test('it needs showDrawingLayer to be true for enableEditing to work', function(assert) {
+  assert.expect(4);
+
+  // Template block usage:
+  this.render(hbs`
+    {{#leaflet-map lat=lat lng=lng zoom=zoom}}
+      {{draw-control showDrawingLayer=true enableEditing=true}}
     {{/leaflet-map}}
   `);
 
@@ -103,7 +136,7 @@ test('it responds to boolean option for showDrawingLayer', function(assert) {
   // Template block usage:
   this.render(hbs`
     {{#leaflet-map lat=lat lng=lng zoom=zoom}}
-      {{draw-control showDrawingLayer=false}}
+      {{draw-control showDrawingLayer=false enableEditing=true}}
     {{/leaflet-map}}
   `);
 
