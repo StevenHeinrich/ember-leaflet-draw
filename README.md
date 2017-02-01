@@ -108,7 +108,7 @@ In your `ember-cli-build.js` add the following snippet:
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://ember-cli.com/].
+For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
 
 
 
@@ -118,5 +118,5 @@ For more information on using ember-cli, visit [http://ember-cli.com/].
 [Leaflet]: http://leafletjs.com
 [Leaflet Draw]: https://github.com/Leaflet/Leaflet.draw
 [Control Positions]: http://leafletjs.com/reference.html#control-positions
-[Draw Options]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#drawoptions
+[DrawOptions]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#drawoptions
 [Leaflet Draw API Documentation]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html
