@@ -1,4 +1,4 @@
-# Ember-leaflet-draw
+# Ember-leaflet-draw [![Ember Observer Score](http://emberobserver.com/badges/ember-leaflet-draw.svg)](http://emberobserver.com/addons/ember-leaflet-draw) [![npm version](https://badge.fury.io/js/ember-leaflet-draw.svg)](https://badge.fury.io/js/ember-leaflet-draw)
 
 Provides feature drawing functionality for [Ember-Leaflet], an Ember Addon for [Leaflet] interactive maps.
 
