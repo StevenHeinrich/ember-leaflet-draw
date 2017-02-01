@@ -25,10 +25,9 @@ This component wraps the [Leaflet Draw] library and exposes the same `options` (
 
 | Option           | Default   | Notes                            |
 | ---------------- |:---------:| -------------------------------- |
-| position         | "topleft" | See the Leaflet docs for [Control Positions] |
 | draw             | DrawOptions [Object] | See the Leaflet Draw docs for [DrawOptions] |
 | enableEditing    | true      | If `true`, the editing toolbar will be added and you can edit features after they have been created. This works in conjunction with `showDrawingLayer`, relying on having a FeatureGroup of drawn featured to edit. It can't be used if `showDrawingLayer` is `false`  |
-| position         | "topleft" |                                  |
+| position         | "topleft" | See the Leaflet docs for [Control Positions] |
 | showDrawingLayer | true      | If `true`, a FeatureGroup will be added to the map to hold features created with drawing tool  |
 
 ```js
