@@ -1,10 +1,22 @@
 import Ember from 'ember';
-// TODO: Determine what is really needed from BaseLayer and create a new starting point, BaseControl (right now, this is just piggybacking off BaseLayer)
-import BaseLayer from 'ember-leaflet/components/base-layer';
+import { ChildMixin } from 'ember-composability-tools';
+import { InvokeActionMixin } from 'ember-invoke-action';
 
-export default BaseLayer.extend({
+const leaf = typeof L === 'undefined' ? {} : L;
 
+export default Ember.Component.extend(ChildMixin, InvokeActionMixin, {
   enableEditing: true, // Default value
+
+  fastboot: Ember.computed(function() {
+    const owner = Ember.getOwner(this);
+    return owner.lookup('service:fastboot');
+  }),
+
+  isFastBoot: Ember.computed('fastboot', function() {
+    return this.get('fastboot') && this.get('fastboot.isFastBoot');
+  }),
+
+  L: leaf,
 
   leafletEvents: [
     'draw:created',
@@ -31,6 +43,8 @@ export default BaseLayer.extend({
 
   showDrawingLayer: true, // Default value
 
+  tagName: '',
+
   usedLeafletEvents: Ember.computed('leafletEvents', function() {
     return this.get('leafletEvents').filter(eventName => {
       eventName = Ember.String.camelize(eventName.replace(':', ' '));
@@ -50,9 +64,16 @@ export default BaseLayer.extend({
     return drawingLayerGroup;
   },
 
+  /*
+   * Method called by parent when the layer needs to setup
+   */
   didInsertParent() {
+    // Check for fastBoot
+    if(this.get('isFastBoot')) {
+      return;
+    }
+
     this._layer = this.createLayer();
-    this._addObservers();
     this._addEventListeners();
 
     const map = this.get('parentComponent._layer');
@@ -80,6 +101,22 @@ export default BaseLayer.extend({
     }
   },
 
+  /*
+   * Method called by parent when the layer needs to teardown
+   */
+  willDestroyParent() {
+    // Check for fastBoot
+    if(this.get('isFastBoot')) {
+      return;
+    }
+
+    this._removeEventListeners();
+    if(this.get('parentComponent') && this._layer) {
+      this.get('parentComponent')._layer.removeLayer(this._layer);
+    }
+    delete this._layer;
+  },
+
   _addEventListeners() {
     this._eventHandlers = {};
     this.get('usedLeafletEvents').forEach(eventName => {
@@ -104,6 +141,15 @@ export default BaseLayer.extend({
       // The events for Leaflet Draw are on the map object, not the layer
       map.addEventListener(originalEventName, this._eventHandlers[originalEventName], this);
     });
+  },
+
+  _removeEventListeners() {
+    if(this._eventHandlers) {
+      this.get('usedLeafletEvents').forEach(eventName => {
+        this._layer.removeEventListener(eventName, this._eventHandlers[eventName], this);
+        delete this._eventHandlers[eventName];
+      });
+    }
   }
 
 });
