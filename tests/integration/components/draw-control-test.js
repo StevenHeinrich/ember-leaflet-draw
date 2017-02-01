@@ -2,19 +2,22 @@ import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('draw-control', 'Integration | Component | draw control', {
-  integration: true
+  integration: true,
+  beforeEach() {
+    // Set any properties with this.set('myProperty', 'value');
+    this.setProperties({
+      lat: 38,
+      lng: -78,
+      zoom: 8
+    });
+
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+  }
 });
 
 test('it renders', function(assert) {
   assert.expect(3);
-  // Set any properties with this.set('myProperty', 'value');
-  this.setProperties({
-    lat: 38,
-    lng: -78,
-    zoom: 8
-  });
-
-  // Handle any actions with this.on('myAction', function(val) { ... });
 
   this.render(hbs`
     {{#leaflet-map lat=lat lng=lng zoom=zoom}}
@@ -43,11 +46,6 @@ test('it renders', function(assert) {
 
 test('it responds to boolean option for enableEditing', function(assert) {
   assert.expect(4);
-  this.setProperties({
-    lat: 38,
-    lng: -78,
-    zoom: 8
-  });
 
   // Template block usage:
   this.render(hbs`
@@ -76,11 +74,6 @@ test('it responds to boolean option for enableEditing', function(assert) {
 
 test('it has deafult value for enableEditing set to true', function(assert) {
   assert.expect(1);
-  this.setProperties({
-    lat: 38,
-    lng: -78,
-    zoom: 8
-  });
 
   // Template block usage:
   this.render(hbs`
@@ -94,12 +87,7 @@ test('it has deafult value for enableEditing set to true', function(assert) {
 });
 
 test('it responds to boolean option for showDrawingLayer', function(assert) {
-  assert.expect(2);
-  this.setProperties({
-    lat: 38,
-    lng: -78,
-    zoom: 8
-  });
+  assert.expect(4);
 
   // Template block usage:
   this.render(hbs`
@@ -125,12 +113,7 @@ test('it responds to boolean option for showDrawingLayer', function(assert) {
 });
 
 test('it has deafult value for showDrawingLayer set to true', function(assert) {
-  assert.expect(1);
-  this.setProperties({
-    lat: 38,
-    lng: -78,
-    zoom: 8
-  });
+  assert.expect(2);
 
   // Template block usage:
   this.render(hbs`
@@ -146,12 +129,9 @@ test('it has deafult value for showDrawingLayer set to true', function(assert) {
 
 test('it responds to all options for position', function(assert) {
   assert.expect(4);
-  this.setProperties({
-    lat: 38,
-    lng: -78,
-    zoom: 8,
-    position: 'topleft'
-  });
+
+  // Set new position to topleft
+  this.set('position', 'topleft');
 
   this.render(hbs`
     {{#leaflet-map lat=lat lng=lng zoom=zoom}}
@@ -201,11 +181,6 @@ test('it responds to all options for position', function(assert) {
 
 test('it has deafult value for position set to topleft', function(assert) {
   assert.expect(1);
-  this.setProperties({
-    lat: 38,
-    lng: -78,
-    zoom: 8
-  });
 
   // Template block usage:
   this.render(hbs`
