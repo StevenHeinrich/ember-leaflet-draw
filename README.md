@@ -1,8 +1,8 @@
 # Ember-leaflet-draw
 
-Provides feature drawing functionality for [Ember-Leaflet](http://ember-leaflet.com), an Ember Addon for [Leaflet](http://leafletjs.com) interactive maps.
+Provides feature drawing functionality for [Ember-Leaflet], an Ember Addon for [Leaflet] interactive maps.
 
-This plugin is based on the JS library [Leaflet Draw](https://github.com/Leaflet/Leaflet.draw) and basically wraps it into ember component. It can also be used solely to handle all the dependencies and build process (if you want to control Leaflet Draw library on your own).
+This plugin is based on the JS library [Leaflet Draw] and basically wraps it into ember component. It can also be used solely to handle all the dependencies and build process (if you want to control Leaflet Draw library on your own).
 
 ## Installation
 
@@ -21,15 +21,15 @@ For basic use, drop the `{{draw-control}}` inside `{{leaflet-map}}`
 
 #### Configuring with the available options
 
-This component wraps the [Leaflet Draw](https://github.com/Leaflet/Leaflet.draw) library and exposes the same `options` (`position`, `draw`, and ~~`edit`~~), along with two additional options (`enableEditing` & `showDrawingLayer`). Support for the passthrough `edit` option from Leaflet Draw may be implemented in the near future.
+This component wraps the [Leaflet Draw] library and exposes the same `options` (`position`, `draw`, and ~~`edit`~~), along with two additional options (`enableEditing` & `showDrawingLayer`). Support for the passthrough `edit` option from Leaflet Draw may be implemented in the near future.
 
-| Option           | Default   |
-| ---------------- |:---------:|
-| position         | "topleft" |
-| draw             | [See Docs](https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#drawoptions)  |
-| enableEditing    | true      |
-| position         | "topleft" |
-| showDrawingLayer | true      |
+| Option           | Default   | Notes                            |
+| ---------------- |:---------:| -------------------------------- |
+| position         | "topleft" | See the Leaflet docs for [Control Positions] |
+| draw             | DrawOptions [Object] | See the Leaflet Draw docs for [DrawOptions] |
+| enableEditing    | true      | If `true`, the editing toolbar will be added and you can edit features after they have been created. This works in conjunction with `showDrawingLayer`, relying on having a FeatureGroup of drawn featured to edit. It can't be used if `showDrawingLayer` is `false`  |
+| position         | "topleft" |                                  |
+| showDrawingLayer | true      | If `true`, a FeatureGroup will be added to the map to hold features created with drawing tool  |
 
 ```js
 // Example changing the position option, to display the control in the top right
@@ -67,7 +67,7 @@ A few examples of the new format are:
 
   - *They all follow this pattern '`onDraw`' + '`{F}istletterofremainingstring`'*
 
-For a full list of the Events and other API features of the underlying Leaflet Draw library, checkout the [Leaflet Draw API Documentation](https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html)
+For a full list of the Events and other API features of the underlying Leaflet Draw library, checkout the [Leaflet Draw API Documentation]
 
 #### Working directly with the L.Draw and L.DrawToolBar objects
 
@@ -108,4 +108,15 @@ In your `ember-cli-build.js` add the following snippet:
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+For more information on using ember-cli, visit [http://ember-cli.com/].
+
+
+
+
+<!-- Link References -->
+[Ember-Leaflet]: http://ember-leaflet.com
+[Leaflet]: http://leafletjs.com
+[Leaflet Draw]: https://github.com/Leaflet/Leaflet.draw
+[Control Positions]: http://leafletjs.com/reference.html#control-positions
+[Draw Options]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#drawoptions
+[Leaflet Draw API Documentation]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html

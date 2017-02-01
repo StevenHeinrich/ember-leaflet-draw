@@ -41,8 +41,9 @@ export default BaseLayer.extend({
   }),
 
   createLayer() {
-    const drawingLayerGroup = new this.L.FeatureGroup();
+    let drawingLayerGroup;
     if(this.get('showDrawingLayer')) {
+      drawingLayerGroup = new this.L.FeatureGroup();
       const map = this.get('parentComponent._layer');
       drawingLayerGroup.addTo(map);
     }
@@ -60,7 +61,7 @@ export default BaseLayer.extend({
       if(!options.position) {
         options.position = 'topleft';
       }
-      if(this.get('enableEditing')) {
+      if(this._layer && this.get('enableEditing')) {
         options.edit = {featureGroup: this._layer};
       }
 
