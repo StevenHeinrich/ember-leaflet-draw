@@ -39,7 +39,7 @@ export default BaseLayer.extend({
   }),
 
   addToContainer() {
-    if(this.get('showDrawingLayer')) {
+    if(this._layer) {
       this.get('parentComponent')._layer.addLayer(this._layer);
     }
   },
