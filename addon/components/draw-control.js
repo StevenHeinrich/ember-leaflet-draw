@@ -1,22 +1,8 @@
 import Ember from 'ember';
-import { ChildMixin } from 'ember-composability-tools';
-import { InvokeActionMixin } from 'ember-invoke-action';
+import BaseLayer from 'ember-leaflet/components/base-layer';
 
-const leaf = typeof L === 'undefined' ? {} : L;
-
-export default Ember.Component.extend(ChildMixin, InvokeActionMixin, {
+export default BaseLayer.extend({
   enableEditing: true, // Default value
-
-  fastboot: Ember.computed(function() {
-    const owner = Ember.getOwner(this);
-    return owner.lookup('service:fastboot');
-  }),
-
-  isFastBoot: Ember.computed('fastboot', function() {
-    return this.get('fastboot') && this.get('fastboot.isFastBoot');
-  }),
-
-  L: leaf,
 
   leafletEvents: [
     'draw:created',
@@ -43,8 +29,6 @@ export default Ember.Component.extend(ChildMixin, InvokeActionMixin, {
 
   showDrawingLayer: true, // Default value
 
-  tagName: '',
-
   usedLeafletEvents: Ember.computed('leafletEvents', function() {
     return this.get('leafletEvents').filter(eventName => {
       eventName = Ember.String.camelize(eventName.replace(':', ' '));
@@ -53,6 +37,12 @@ export default Ember.Component.extend(ChildMixin, InvokeActionMixin, {
       return this.get(methodName) !== undefined || this.get(actionName) !== undefined;
     });
   }),
+
+  addToContainer() {
+    if(this.get('showDrawingLayer')) {
+      this.get('parentComponent')._layer.addLayer(this._layer);
+    }
+  },
 
   createLayer() {
     let drawingLayerGroup;
@@ -64,18 +54,7 @@ export default Ember.Component.extend(ChildMixin, InvokeActionMixin, {
     return drawingLayerGroup;
   },
 
-  /*
-   * Method called by parent when the layer needs to setup
-   */
-  didInsertParent() {
-    // Check for fastBoot
-    if(this.get('isFastBoot')) {
-      return;
-    }
-
-    this._layer = this.createLayer();
-    this._addEventListeners();
-
+  didCreateLayer() {
     const map = this.get('parentComponent._layer');
     if(map) {
       let options = this.getProperties('position', 'draw');
@@ -99,22 +78,6 @@ export default Ember.Component.extend(ChildMixin, InvokeActionMixin, {
         });
       }
     }
-  },
-
-  /*
-   * Method called by parent when the layer needs to teardown
-   */
-  willDestroyParent() {
-    // Check for fastBoot
-    if(this.get('isFastBoot')) {
-      return;
-    }
-
-    this._removeEventListeners();
-    if(this.get('parentComponent') && this._layer) {
-      this.get('parentComponent')._layer.removeLayer(this._layer);
-    }
-    delete this._layer;
   },
 
   _addEventListeners() {
@@ -141,15 +104,6 @@ export default Ember.Component.extend(ChildMixin, InvokeActionMixin, {
       // The events for Leaflet Draw are on the map object, not the layer
       map.addEventListener(originalEventName, this._eventHandlers[originalEventName], this);
     });
-  },
-
-  _removeEventListeners() {
-    if(this._eventHandlers) {
-      this.get('usedLeafletEvents').forEach(eventName => {
-        this._layer.removeEventListener(eventName, this._eventHandlers[eventName], this);
-        delete this._eventHandlers[eventName];
-      });
-    }
   }
 
 });
