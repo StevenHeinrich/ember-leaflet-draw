@@ -10,6 +10,9 @@ cache:
     - node_modules
 
 env:
+  global:
+  - ENCRYPTION_LABEL: "1e7ab1c5e7e3"
+  - COMMIT_AUTHOR_EMAIL: "steven.heinrich@gmail.com"
   - EMBER_TRY_SCENARIO=default
   - EMBER_TRY_SCENARIO=ember-1.13
   - EMBER_TRY_SCENARIO=ember-release
@@ -36,3 +39,4 @@ script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
   - ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
+  - ./deploy.sh
