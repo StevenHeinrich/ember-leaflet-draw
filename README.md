@@ -30,6 +30,7 @@ This component wraps the [Leaflet Draw] library and exposes the same `options` (
 | position         | "topleft" | See the Leaflet docs for [Control Positions] |
 | showDrawingLayer | true      | If `true`, a FeatureGroup will be added to the map to hold features created with drawing tool  |
 
+
 ```js
 // Example changing the position option, to display the control in the top right
 {{draw-control position="topright"}}

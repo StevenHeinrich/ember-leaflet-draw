@@ -5,19 +5,19 @@ export default BaseLayer.extend({
   enableEditing: true, // Default value
 
   leafletEvents: [
-    'draw:created',
-    'draw:edited',
-    'draw:editmove',
-    'draw:editresize ',
-    'draw:editstart',
-    'draw:editstop',
-    'draw:editvertex',
-    'draw:deleted',
-    'draw:deletestart',
-    'draw:deletestop ',
-    'draw:drawstart',
-    'draw:drawstop ',
-    'draw:drawvertex '
+    L.Draw.Event.CREATED,
+    L.Draw.Event.EDITED,
+    L.Draw.Event.EDITMOVE,
+    L.Draw.Event.EDITRESIZE,
+    L.Draw.Event.EDITSTART,
+    L.Draw.Event.EDITSTOP,
+    L.Draw.Event.EDITVERTEX,
+    L.Draw.Event.DELETED,
+    L.Draw.Event.DELETESTART,
+    L.Draw.Event.DELETESTOP,
+    L.Draw.Event.DRAWSTART,
+    L.Draw.Event.DRAWSTOP,
+    L.Draw.Event.DRAWVERTEX
   ],
 
   leafletOptions: [
@@ -72,7 +72,7 @@ export default BaseLayer.extend({
 
       // If showDrawingLayer, add new feature to the layer
       if(this.get('showDrawingLayer')) {
-        map.on('draw:created', (e) => {
+        map.on(this.L.Draw.Event.CREATED, (e) => {
           const layer = e.layer;
           this._layer.addLayer(layer);
         });
