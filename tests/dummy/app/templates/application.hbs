@@ -1,0 +1,18 @@
+<h2>Ember-Leaflet-Draw Documentation</h2>
+<p>coming soon...</p>
+
+
+{{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
+  {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+  {{draw-control}}
+  <!-- {{draw-control
+      position="topright"
+      draw=drawConfig
+      enableEditing=true
+      showDrawingLayer=true
+      onDrawCreated="drawFinished"
+      onDrawEditstart="editStarted"}} -->
+  <!-- {{#each restaurants as |r|}}
+    {{marker-layer lat=r.lat lng=r.lng}}
+  {{/each}} -->
+{{/leaflet-map}}
