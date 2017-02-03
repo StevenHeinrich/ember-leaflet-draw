@@ -35,6 +35,9 @@ install:
   - npm install
   - bower install
 
+before_script:
+ - chmod +x ./deploy.sh
+
 script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
