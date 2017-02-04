@@ -39,7 +39,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.rootURL = 'ember-leaflet-draw/';
+    ENV.rootURL = '/ember-leaflet-draw/';
   }
 
   return ENV;
