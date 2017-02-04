@@ -6,7 +6,7 @@ module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     // Add options here
     fingerprint: {
-      prepend: 'ember-leaflet-draw/' // Set prefix for us in production to make the path work happy with github pages (non-custom domain)
+      prepend: 'https://stevenheinrich.github.io/'
     }
   });
 
