@@ -23,7 +23,7 @@ cd ..
 rm -rf out/**/* || exit 0
 
 # Build the Ember app
-ember build
+ember build --environment production
 
 # Copy dist files into out
 cp -a dist/. out/
