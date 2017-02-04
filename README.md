@@ -97,6 +97,11 @@ In your `ember-cli-build.js` add the following snippet:
 
 *Ember-Cli does fingerprinting (appending an md5 checksum to the end of every file) for production builds by default (http://ember-cli.com/user-guide/#fingerprinting-and-cdn-urls). Exclude the assets you need so that your production build produces them correctly.*
 
+## Running the Dummy App
+
+* `ember server`
+* Visit your app at http://localhost:4200.
+
 
 ## Running Tests
 

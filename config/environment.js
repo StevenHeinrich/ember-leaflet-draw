@@ -2,12 +2,10 @@
 'use strict';
 
 module.exports = function(environment) {
-  var ENV = {
-    rootURL: '/',
-  };
+  var ENV = {};
 
   if (environment === 'production') {
-    ENV.rootURL = 'ember-leaflet-draw/';
+    ENV.baseURL = 'ember-leaflet-draw/';
   }
 
   return ENV;
