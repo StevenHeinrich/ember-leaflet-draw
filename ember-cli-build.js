@@ -5,6 +5,9 @@ var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     // Add options here
+    fingerprint: {
+      prepend: 'ember-leaflet-draw/' // Set prefix for us in production to make the path work happy with github pages (non-custom domain)
+    }
   });
 
   /*
