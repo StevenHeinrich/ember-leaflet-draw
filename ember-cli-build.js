@@ -5,6 +5,18 @@ var EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function(defaults) {
   var app = new EmberAddon(defaults, {
     // Add options here
+    'ember-font-awesome': {
+      'useLess': true
+    },
+    'SemanticUI': {
+      'css': false
+    },
+    'lessOptions': {
+      'paths': [
+        'bower_components/semantic-ui/src',
+        'app/styles'
+      ]
+    },
     fingerprint: {
       prepend: 'https://stevenheinrich.github.io/'
     }
