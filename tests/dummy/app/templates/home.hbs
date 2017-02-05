@@ -1,0 +1,6 @@
+{{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
+  {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+  {{draw-control position="topright" draw=drawConfig}}
+{{/leaflet-map}}
+
+{{outlet}}
