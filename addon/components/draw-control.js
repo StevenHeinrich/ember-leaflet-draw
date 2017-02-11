@@ -2,7 +2,7 @@ import Ember from 'ember';
 import BaseLayer from 'ember-leaflet/components/base-layer';
 
 export default BaseLayer.extend({
-  enableEditing: true, // Default value
+  enableEditing: false, // Default value
 
   leafletEvents: [
     L.Draw.Event.CREATED,
@@ -27,7 +27,7 @@ export default BaseLayer.extend({
     'showDrawingLayer'
   ],
 
-  showDrawingLayer: true, // Default value
+  showDrawingLayer: false, // Default value
 
   usedLeafletEvents: Ember.computed('leafletEvents', function() {
     return this.get('leafletEvents').filter(eventName => {

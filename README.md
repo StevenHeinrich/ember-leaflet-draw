@@ -4,6 +4,9 @@ Provides feature drawing functionality for [Ember-Leaflet], an Ember Addon for [
 
 This plugin is based on the JS library [Leaflet Draw] and basically wraps it into ember component. It can also be used solely to handle all the dependencies and build process (if you want to control Leaflet Draw library on your own).
 
+## Demo
+[View the Demo](https://stevenheinrich.github.io/ember-leaflet-draw/) for working examples.
+
 ## Installation
 
 * `ember install ember-leaflet-draw`
@@ -26,9 +29,9 @@ This component wraps the [Leaflet Draw] library and exposes the same `options` (
 | Option           | Default   | Notes                            |
 | ---------------- |:---------:| -------------------------------- |
 | draw             | DrawOptions [Object] | See the Leaflet Draw docs for [DrawOptions] |
-| enableEditing    | true      | If `true`, the editing toolbar will be added and you can edit features after they have been created. This works in conjunction with `showDrawingLayer`, relying on having a FeatureGroup of drawn featured to edit. It can't be used if `showDrawingLayer` is `false`  |
+| enableEditing    | false      | If `true`, the editing toolbar will be added and you can edit features after they have been created. This works in conjunction with `showDrawingLayer`, relying on having a FeatureGroup of drawn featured to edit. It can't be used if `showDrawingLayer` is `false`  |
 | position         | "topleft" | See the Leaflet docs for [Control Positions] |
-| showDrawingLayer | true      | If `true`, a FeatureGroup will be added to the map to hold features created with drawing tool  |
+| showDrawingLayer | false      | If `true`, a FeatureGroup will be added to the map to hold features created with drawing tool  |
 
 
 ```js
