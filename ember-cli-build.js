@@ -18,7 +18,7 @@ module.exports = function(defaults) {
       ]
     },
     fingerprint: {
-      prepend: 'https://stevenheinrich.github.io/'
+      // prepend: 'https://stevenheinrich.github.io/'
     }
   });
 

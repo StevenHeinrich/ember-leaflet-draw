@@ -1,32 +1,17 @@
-<div class="ui grid">
-  <div class="computer tablet only row">
-    <div class="ui inverted green fluid massive borderless menu navbar page grid">
-      {{#link-to "home" class="brand item"}}
-        <img src="{{rootURL}}/assets/images/ember-logo.png">
-        Leaflet-Draw
-      {{/link-to}}
-      {{link-to "Docs" "docs" class="item"}}
-      {{link-to "Examples" "examples" class="item"}}
-      <div class="right menu">
-        <a href="https://github.com/StevenHeinrich/ember-leaflet-draw"  target="_blank" class="item">GitHub</a>
-      </div>
-    </div>
-  </div>
-  <div class="mobile only row">
-    <div class="ui fixed inverted green navbar borderless menu">
-      <a href="" class="brand item"><img src="{{rootURL}}/assets/images/ember-logo.png">Leaflet-Draw</a>
-      <div class="right menu open">
-        <a href="" class="menu item">
-          <i class="sidebar icon"></i>
-        </a>
-      </div>
+<div class="ui fluid attached inverted massive green borderless menu">
+  <div class="ui container">
+    {{#link-to "home" class="brand header item"}}
+      <img src="assets/images/ember-logo.png">
+      Leaflet-Draw
+    {{/link-to}}
+    {{link-to "Docs" "docs" class="item"}}
+    {{link-to "Examples" "examples" class="item"}}
+    <div class="right menu">
+      <a href="https://github.com/StevenHeinrich/ember-leaflet-draw"  target="_blank" class="item">GitHub</a>
     </div>
   </div>
 </div>
-<div class="ui page grid main">
-  <div class="row">
-    <div class="column padding-reset">
-      {{outlet}}
-    </div>
-  </div>
+
+<div class="ui main container">
+  {{outlet}}
 </div>
