@@ -100,10 +100,22 @@ export default BaseLayer.extend({
         });
       };
 
-      const map = this.get('parentComponent._layer');
       // The events for Leaflet Draw are on the map object, not the layer
+      const map = this.get('parentComponent._layer');
       map.addEventListener(originalEventName, this._eventHandlers[originalEventName], this);
     });
+  },
+
+  _removeEventListeners() {
+    if(this._eventHandlers) {
+      this.get('usedLeafletEvents').forEach(eventName => {
+        const map = this.get('parentComponent._layer');
+        // The events for Leaflet Draw are on the map object, not the layer
+        map.removeEventListener(eventName,
+          this._eventHandlers[eventName], this);
+        delete this._eventHandlers[eventName];
+      });
+    }
   }
 
 });
