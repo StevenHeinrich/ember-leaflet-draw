@@ -70,7 +70,7 @@ A few examples of the new format are:
 
   - *They all follow this pattern '`onDraw`' + '`{F}istletterofremainingstring`'*
 
-For a full list of the Events and other API features of the underlying Leaflet Draw library, checkout the [Leaflet Draw API Documentation]
+Refer to the full list of the [Events] (they have different return values... Layer/LayerGroup/String, look there to know what you will be working with). For additional features of the underlying Leaflet Draw library, checkout the [Leaflet Draw API Documentation].
 
 #### Working directly with the L.Draw and L.DrawToolBar objects
 
@@ -127,4 +127,5 @@ For more information on using ember-cli, visit [http://ember-cli.com/](http://em
 [Leaflet Draw]: https://github.com/Leaflet/Leaflet.draw
 [Control Positions]: http://leafletjs.com/reference.html#control-positions
 [DrawOptions]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#drawoptions
+[Events]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#l-draw-event-event
 [Leaflet Draw API Documentation]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html
