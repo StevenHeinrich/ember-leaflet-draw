@@ -84,6 +84,7 @@ export default BaseLayer.extend({
     this._eventHandlers = {};
     this.get('usedLeafletEvents').forEach(eventName => {
       const originalEventName = eventName;
+      const map = this.get('parentComponent._layer');
       // Cleanup the Leaflet Draw event names that have colons, ex:'draw:created'
       eventName = Ember.String.camelize(eventName.replace(':', ' '));
       const actionName = 'on' + Ember.String.classify(eventName);
@@ -92,16 +93,15 @@ export default BaseLayer.extend({
       this._eventHandlers[originalEventName] = function(e) {
         Ember.run(() => {
           // Try to invoke/send an action for this event
-          this.invokeAction(actionName, e);
+          this.invokeAction(actionName, e, this._layer, map);
           // Allow classes to add custom logic on events as well
           if(typeof this[methodName] === 'function') {
-            Ember.run(this, this[methodName], e);
+            Ember.run(this, this[methodName], e, this._layer, map);
           }
         });
       };
 
       // The events for Leaflet Draw are on the map object, not the layer
-      const map = this.get('parentComponent._layer');
       map.addEventListener(originalEventName, this._eventHandlers[originalEventName], this);
     });
   },
