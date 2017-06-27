@@ -1,5 +1,27 @@
 {{#leaflet-map lat=lat lng=lng zoom=zoom as |layers|}}
   {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
-  {{draw-control position="topright" draw=drawConfig showDrawingLayer=true enableEditing=true}}
+  {{draw-control position="topright"
+                 draw=drawConfig
+                 showDrawingLayer=true
+                 enableEditing=true
+                 onDrawCreated=(action 'updateDrawnFeature')
+                 onDrawEdited=(action 'updateEditedFeatures')}}
 {{/leaflet-map}}
+
+
+<div class="ui segment">
+  GeoJSON of Last Drawn Feature:
+  <pre>{{latestFeatureStringified}}</pre>
+</div>
+
+<div class="ui segment">
+  GeoJSON of ALL Drawn Features:
+  <pre>{{allFeaturesStringified}}</pre>
+</div>
+
+<div class="ui segment">
+  GeoJSON of Edited Features:
+  <pre>{{editedFeaturesStringified}}</pre>
+</div>
+
 {{outlet}}
