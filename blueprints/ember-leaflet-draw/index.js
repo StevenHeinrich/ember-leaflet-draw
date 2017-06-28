@@ -5,6 +5,6 @@ module.exports = {
   normalizeEntityName: function() {}, // no-op since we're just adding dependencies
 
   afterInstall: function() {
-    return this.addPackageToProject('leaflet-draw', '~0.4.9');
+    return this.addPackageToProject('leaflet-draw', '~0.6.0');
   }
 };
