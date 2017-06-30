@@ -2,7 +2,9 @@ import Ember from 'ember';
 import BaseLayer from 'ember-leaflet/components/base-layer';
 
 export default BaseLayer.extend({
-  enableEditing: false, // Default value
+  enableDeleting: true, // Default value
+  enableEditing: true, // Default value
+  showDrawingLayer: true, // Default value
 
   leafletEvents: [
     L.Draw.Event.CREATED,
@@ -22,12 +24,11 @@ export default BaseLayer.extend({
 
   leafletOptions: [
     'draw',
+    'edit',
     'enableEditing',
     'position',
     'showDrawingLayer'
   ],
-
-  showDrawingLayer: false, // Default value
 
   usedLeafletEvents: Ember.computed('leafletEvents', function() {
     return this.get('leafletEvents').filter(eventName => {
@@ -57,25 +58,34 @@ export default BaseLayer.extend({
   didCreateLayer() {
     const map = this.get('parentComponent._layer');
     if(map) {
-      let options = this.getProperties('position', 'draw');
+      let options = this.getProperties('position', 'draw', 'edit');
       if(!options.position) {
         options.position = 'topleft';
       }
-      if(this._layer && this.get('enableEditing')) {
-        options.edit = {featureGroup: this._layer};
-      }
 
-      // Extend the default draw object with options overrides
-      options.draw = Ember.$.extend({}, this.L.drawLocal.draw, options.draw);
-      // Add the draw control to the map
-      map.addControl(new this.L.Control.Draw(options));
+      // options.edit = Ember.$.extend(true, {featureGroup: this._layer}, options.edit);
+      if(this._layer) {
+        options.edit = Ember.$.extend(true, {featureGroup: this._layer}, options.edit);
+        if(!this.get('enableEditing') && !options.edit.edit) {
+          options.edit.edit = false;
+        }
 
-      // If showDrawingLayer, add new feature to the layer
-      if(this.get('showDrawingLayer')) {
-        map.on(this.L.Draw.Event.CREATED, (e) => {
-          const layer = e.layer;
-          this._layer.addLayer(layer);
-        });
+        if(!this.get('enableDeleting') && !options.edit.remove) {
+          options.edit.remove = false;
+        }
+
+        // Extend the default draw object with options overrides
+        options.draw = Ember.$.extend({}, this.L.drawLocal.draw, options.draw);
+        // Add the draw control to the map
+        map.addControl(new this.L.Control.Draw(options));
+
+        // If showDrawingLayer, add new layer to the layerGroup
+        if(this.get('showDrawingLayer')) {
+          map.on(this.L.Draw.Event.CREATED, (e) => {
+            const layer = e.layer;
+            this._layer.addLayer(layer);
+          });
+        }
       }
     }
   },

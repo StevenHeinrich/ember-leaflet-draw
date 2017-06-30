@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
       })
     },
     polygon: {
-      allowIntersection: false, // Restricts shapes to simple polygons
+      allowIntersection: true, // Restricts shapes to simple polygons
       drawError: {
         color: 'red', // Color the shape will turn when intersects
         message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
@@ -54,6 +54,10 @@ export default Ember.Controller.extend({
       }
     },
   },
+  // editConfig: {
+  //   edit: false,
+  //   remove: false
+  // },
   actions: {
     updateDrawnFeature(feature, drawingLayerGroup, map) {
       let latestFeature = feature.layer.toGeoJSON();

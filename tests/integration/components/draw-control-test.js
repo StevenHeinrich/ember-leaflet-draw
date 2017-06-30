@@ -54,7 +54,7 @@ test('it renders', function(assert) {
 });
 
 test('it responds to boolean option for enableEditing', function(assert) {
-  assert.expect(4);
+  assert.expect(2);
 
   // Template block usage: (can't enableEditing without showDrawingLayer set to true)
   this.render(hbs`
@@ -65,8 +65,6 @@ test('it responds to boolean option for enableEditing', function(assert) {
 
   // Ensure draw-control enables enableEditing
   assert.ok(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-edit').length, "setting enableEditing to true fails to render edit button");
-  assert.ok(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-remove').length, "setting enableEditing to true fails to render delete button");
-
 
   // Template block usage: (set showDrawingLayer to true to prove that enableEditing as false works)
   this.render(hbs`
@@ -77,11 +75,35 @@ test('it responds to boolean option for enableEditing', function(assert) {
 
   // Ensure draw-control disables enableEditing
   assert.notOk(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-edit').length, "setting enableEditing to false fails to hide edit button");
-  assert.notOk(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-remove').length, "setting enableEditing to false fails to hide delete button");
 
 });
 
-test('it has deafult value for enableEditing set to false', function(assert) {
+test('it responds to boolean option for enableEditing', function(assert) {
+  assert.expect(2);
+
+  // Template block usage: (can't enableDeleting without showDrawingLayer set to true)
+  this.render(hbs`
+    {{#leaflet-map lat=lat lng=lng zoom=zoom}}
+      {{draw-control enableDeleting=true showDrawingLayer=true}}
+    {{/leaflet-map}}
+  `);
+
+  // Ensure draw-control enables enableDeleting
+  assert.ok(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-remove').length, "setting enableDeleting to true fails to render delete button");
+
+  // Template block usage: (set showDrawingLayer to true to prove that enableDeleting as false works)
+  this.render(hbs`
+    {{#leaflet-map lat=lat lng=lng zoom=zoom}}
+      {{draw-control enableDeleting=false showDrawingLayer=true}}
+    {{/leaflet-map}}
+  `);
+
+  // Ensure draw-control disables enableDeleting
+  assert.notOk(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-remove').length, "setting enableDeleting to false fails to hide delete button");
+
+});
+
+test('it has default value for enableEditing set to true', function(assert) {
   assert.expect(2);
 
   // Template block usage: (set showDrawingLayer to true to prove that enableEditing defaults false)
@@ -92,8 +114,8 @@ test('it has deafult value for enableEditing set to false', function(assert) {
   `);
 
   // Ensure draw-control defaults to enabling enableEditing
-  assert.notOk(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-edit').length, "default enableEditing should be false and not render edit button");
-  assert.notOk(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-remove').length, "setting enableEditing should be false and not render delete button");
+  assert.ok(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-edit').length, "default enableEditing should be true and not render edit button");
+  assert.ok(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-remove').length, "setting enableEditing should be true and not render delete button");
 
 });
 
@@ -132,8 +154,8 @@ test('it needs showDrawingLayer to be true for enableEditing to work', function(
   `);
 
   // Ensure draw-control enables showDrawingLayer. If enabled (while edit is defaulted/true) the edit buttons will display becaue there is a layer to edit.
-  assert.ok(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-edit').length, "setting enableEditing to true fails to render edit button");
-  assert.ok(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-remove').length, "setting enableEditing to true fails to render delete button");
+  assert.ok(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-edit').length, "setting showDrawingLayer to true fails to render edit button");
+  assert.ok(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-remove').length, "setting showDrawingLayer to true fails to render delete button");
 
   // Template block usage:
   this.render(hbs`
@@ -147,7 +169,7 @@ test('it needs showDrawingLayer to be true for enableEditing to work', function(
   assert.notOk(this.$('.leaflet-draw.leaflet-control .leaflet-draw-edit-remove').length, "setting showDrawingLayer to false fails to hide delete button");
 });
 
-test('it has deafult value for showDrawingLayer set to false', function(assert) {
+test('it has default value for showDrawingLayer set to true', function(assert) {
   assert.expect(1);
 
   // Template block usage:
@@ -158,8 +180,8 @@ test('it has deafult value for showDrawingLayer set to false', function(assert) 
   `);
 
   // Ensure draw-control enables showDrawingLayer. If enabled, _layer will be created.
-  assert.notOk(drawControl._layer, 'should not have found drawing layer');
-  });
+  assert.ok(drawControl._layer, 'should have found drawing layer');
+});
 
 test('it responds to all options for position', function(assert) {
   assert.expect(4);
@@ -213,7 +235,7 @@ test('it responds to all options for position', function(assert) {
   assert.ok(this.$('.leaflet-bottom.leaflet-right .leaflet-draw.leaflet-control').length, "bottomright location fails");
 });
 
-test('it has deafult value for position set to topleft', function(assert) {
+test('it has default value for position set to topleft', function(assert) {
   assert.expect(1);
 
   // Template block usage:

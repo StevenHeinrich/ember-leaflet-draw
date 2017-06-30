@@ -2,8 +2,6 @@
   {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
   {{draw-control position="topright"
                  draw=drawConfig
-                 showDrawingLayer=true
-                 enableEditing=true
                  onDrawCreated=(action 'updateDrawnFeature')
                  onDrawEdited=(action 'updateEditedFeatures')}}
 {{/leaflet-map}}
