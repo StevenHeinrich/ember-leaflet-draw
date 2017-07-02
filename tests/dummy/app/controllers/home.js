@@ -2,8 +2,8 @@ import Ember from 'ember';
 /* global L */
 
 export default Ember.Controller.extend({
-  lat: 38,
-  lng: -77,
+  lat: 38.976807,
+  lng: -76.485527,
   zoom: 8,
   latestFeature: {},
   latestFeatureStringified: Ember.computed('latestFeature', function() {

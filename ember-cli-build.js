@@ -17,6 +17,7 @@ module.exports = function(defaults) {
         'app/styles'
       ]
     },
+    snippetPaths: ['tests/dummy/app/snippets'],
     fingerprint: {
       // prepend: 'https://stevenheinrich.github.io/'
     }

@@ -8,8 +8,16 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('home', {path: '/'});
-  this.route('examples');
-  this.route('docs');
+  this.route('examples', function() {
+    this.route('basic-use');
+    this.route('overview');
+    this.route('installation');
+  });
+  this.route('docs', function() {
+    this.route('installation');
+    this.route('basic-use');
+    this.route('overview');
+  });
 });
 
 export default Router;
