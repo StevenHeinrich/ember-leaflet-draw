@@ -1,0 +1,15 @@
+<div class="ui raised segment">
+  {{#leaflet-map lat='38.976852' lng='-76.485767' zoom=9 as |layers|}}
+    {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+    {{draw-control position="topright" draw=drawConfig showDrawingLayer=true enableEditing=true}}
+  {{/leaflet-map}}
+
+  <div class="ui segment">
+    GeoJSON:
+    <pre>
+
+    </pre>
+  </div>
+</div>
+
+{{outlet}}

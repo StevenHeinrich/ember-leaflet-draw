@@ -1,0 +1,1 @@
+export { default } from 'ember-leaflet-draw/components/draw-control';
