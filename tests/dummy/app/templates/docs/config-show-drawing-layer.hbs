@@ -1,0 +1,33 @@
+<div class="ui small header">
+  Show Drawing Layer: a config property for the Draw Control component
+</div>
+
+<P>
+  The default value for `showDrawingLayer` is `true`. This allows the most basic use-case to display the drawn objects on the map, out of the box.
+  This property has been added to allow you to easily override the default value and turn the dsiplay of created features/layers off.
+  This shortcut allows you to get going with drawing in Leaflet without learning the API for the Leaflet Draw plugin.
+</p>
+
+<p>
+  This option may not seem very useful. In fact it will certainly add more work for the developer, if set to false.
+  The reason it is here is to allow you to create your own Drawing Controls (buttons). You can even create them 'outside' of the map.
+  This still gives you access to the Leaflet Draw plugin API, and you can use it to programmatically access the same drawing UI, in a post-button-click fashion.
+</p>
+
+<p>
+  Notice below, the Draw Controls are removed and any features/layers that are drawn through the Draw API fail to be displayed on the map... this is due to setting the `showDrawingLayer` property to false.
+  You can NOT set this to false if you wish to use the Leaflet Draw Control Buttons (though the API and eventing is technically still available to you).
+</p>
+
+<p>
+  Setting this property to `false` is really only for advanced use cases.
+</P>
+
+
+{{#leaflet-map lat='36.013829' lng='-75.667405' zoom=9 as |layers|}}
+  {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+  {{draw-control showDrawingLayer=false}}
+{{/leaflet-map}}
+<div class="ui code segment">
+  {{code-snippet name="config-show-drawing-layer.hbs" unindent=false}}
+</div>

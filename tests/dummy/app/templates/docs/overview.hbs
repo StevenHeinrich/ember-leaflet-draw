@@ -1,3 +1,16 @@
-Overview...
+<div class="ui small header">
+  Overview:
+</div>
 
-{{outlet}}
+<P>
+  Ember-Leaflet-Draw is an Addon that relies upon the <a href="http://ember-leaflet.com" target="_blank">Ember-Leaflet</a> Addon. It brings feature drawing functionality to the Ember-Leaflet Addon.
+</P>
+
+<p>
+  This Addon is based on the <a href="https://github.com/Leaflet/Leaflet.draw" target="_blank">Leaflet.Draw</a> Plugin and basically wraps it into an Ember component.
+</p>
+
+{{#leaflet-map lat='36.013829' lng='-75.667405' zoom=9 as |layers|}}
+  {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+  {{draw-control position="topright" draw=drawConfig}}
+{{/leaflet-map}}

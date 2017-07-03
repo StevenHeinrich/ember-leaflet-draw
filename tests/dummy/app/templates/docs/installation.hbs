@@ -1,1 +1,22 @@
-Ember-leaflet is packaged as an Ember-cli addon. As usual, the only thing you need to do is to run an install command in your ember app directory:
+<div class="ui small header">
+  Installation:
+</div>
+
+<P>
+  Ember-Leaflet-Draw is packaged as an Ember-cli addon. As usual, run the install command in your ember app directory:
+</P>
+
+<div class="ui code segment">
+  {{code-snippet name="installation.sh" unindent=false}}
+</div>
+
+<P>
+  Note: For production builds, update ember-cli's fingerprinting exclusions for the assets included in ember-leaflet-draw. See <a href="https://ember-cli.com/user-guide/#fingerprinting-and-cdn-urls" target="_blank">here</a> for more details.
+</P>
+<P>
+  In your `ember-cli-build.js` ensure it contains the excludes listed in this snippet:
+</P>
+
+<div class="ui code segment">
+  {{code-snippet name="ember-cli-build.js" unindent=false}}
+</div>

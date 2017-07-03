@@ -17,6 +17,12 @@ Router.map(function() {
     this.route('installation');
     this.route('basic-use');
     this.route('overview');
+    this.route('config-enable-editing');
+    this.route('config-enable-deleting');
+    this.route('config-show-drawing-layer');
+    this.route('config-draw');
+    this.route('config-edit');
+    this.route('config-position');
   });
 });
 

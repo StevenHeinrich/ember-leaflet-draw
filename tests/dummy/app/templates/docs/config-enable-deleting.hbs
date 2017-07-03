@@ -1,0 +1,28 @@
+<div class="ui small header">
+  Enable Deleting: a config property for the Draw Control component
+</div>
+
+<P>
+  The default value for `enableDeleting` is `true`. This allows the most basic use-case to include the deletion controls out of the box.
+  This property has been added to allow you to easily override the default value and turn deleting off.
+  This shortcut allows you to get going with drawing in Leaflet without learning the API for the Leaflet Draw plugin.
+</p>
+
+<p>
+  You can also turn off the ability to delete by using the pass-though `remove` property on the edit config options (see underlying API Docs <a href="https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#editpolyoptions" target="_blank">here</a>).
+  It passes the object along as `options.edit` while instantiating the Draw Control.
+  If you have set either the `remove` config to true or the shortcut `enableDeleting` is set to true, the outcome will be that the deletion controls are active (true).
+</P>
+
+<p>
+  Notice below, the Delete button is missing from the Draw Control... this is due to setting the `enableDeleting` property to false.
+</P>
+
+
+{{#leaflet-map lat='36.013829' lng='-75.667405' zoom=9 as |layers|}}
+  {{layers.tile url="http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+  {{draw-control enableDeleting=false}}
+{{/leaflet-map}}
+<div class="ui code segment">
+  {{code-snippet name="config-enable-deleting.hbs" unindent=false}}
+</div>

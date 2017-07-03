@@ -11,7 +11,9 @@ This plugin is based on the JS library [Leaflet Draw] and basically wraps it int
 
 * `ember install ember-leaflet-draw`
 
-## Using the plugin
+## Using the Addon
+
+For greater detail, view the [Documentation](https://stevenheinrich.github.io/ember-leaflet-draw/docs/overview) with working examples.
 
 #### Basic Use
 For basic use, drop the `{{draw-control}}` inside `{{leaflet-map}}`
@@ -24,16 +26,17 @@ For basic use, drop the `{{draw-control}}` inside `{{leaflet-map}}`
 
 #### Configuring with the available options
 
-This component wraps the [Leaflet Draw] library and exposes the same `options` (`position`, `draw`, and ~~`edit`~~), along with two additional options (`enableEditing` & `showDrawingLayer`). Support for the passthrough `edit` option from Leaflet Draw may be implemented in the near future.
+This component wraps the [Leaflet Draw] library and exposes the same `options` (`position`, `draw`, and `edit`), along with three additional options (`enableEditing`, `enableDeleting` & `showDrawingLayer`). Support for the passthrough `edit` option from Leaflet Draw may be implemented in the near future.
 
 _Notice: option default values changed with release `0.7.0`_
 
 | Option           | Default   | Notes                            |
 | ---------------- |:---------:| -------------------------------- |
 | draw             | DrawOptions [Object] | See the Leaflet Draw docs for [DrawOptions] |
+| edit             | EditPolyOptions [Object] | See the Leaflet Draw docs for [EditPolyOptions] |
+| position         | "topleft" | See the Leaflet docs for [Control Positions] |
 | enableEditing    | true      | If `true`, the editing toolbar item will be added and you can edit features after they have been created. This works in conjunction with `showDrawingLayer`, relying on having a FeatureGroup of drawn featured to edit. It can't be used if `showDrawingLayer` is `false`  |
 | enableDeleting    | true      | If `true`, the deleting toolbar item will be added and you can delete features after they have been created. This works in conjunction with `showDrawingLayer`, relying on having a FeatureGroup of drawn featured to edit. It can't be used if `showDrawingLayer` is `false`  |
-| position         | "topleft" | See the Leaflet docs for [Control Positions] |
 | showDrawingLayer | true      | If `true`, a FeatureGroup will be added to the map to hold features created with drawing tool  |
 
 
@@ -130,5 +133,6 @@ For more information on using ember-cli, visit [http://ember-cli.com/](http://em
 [Leaflet Draw]: https://github.com/Leaflet/Leaflet.draw
 [Control Positions]: http://leafletjs.com/reference.html#control-positions
 [DrawOptions]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#drawoptions
+[EditPolyOptions]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#editpolyoptions
 [Events]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html#l-draw-event-event
 [Leaflet Draw API Documentation]: https://leaflet.github.io/Leaflet.draw/docs/leaflet-draw-latest.html
