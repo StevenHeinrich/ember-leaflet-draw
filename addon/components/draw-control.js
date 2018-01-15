@@ -5,6 +5,11 @@ export default BaseLayer.extend({
   enableDeleting: true, // Default value
   enableEditing: true, // Default value
   showDrawingLayer: true, // Default value
+  
+  // Keep a reference to the draw control, so that its options can be modified later
+	_drawControl: undefined,
+	// Keep a reference to the drawing group, so that layers can be modified layer
+	_drawingLayerGroup: undefined,
 
   leafletEvents: [
     L.Draw.Event.CREATED,
@@ -62,6 +67,7 @@ export default BaseLayer.extend({
       
       drawingLayerGroup.addTo(map);
     }
+    this.set('_drawingLayerGroup',drawingLayerGroup);
     return drawingLayerGroup;
   },
 
@@ -87,7 +93,9 @@ export default BaseLayer.extend({
         // Extend the default draw object with options overrides
         options.draw = Ember.$.extend({}, this.L.drawLocal.draw, options.draw);
         // Add the draw control to the map
-        map.addControl(new this.L.Control.Draw(options));
+        let _drawControl = new this.L.Control.Draw(options);
+				map.addControl(_drawControl);
+				this.set('_drawControl',_drawControl);
 
         // If showDrawingLayer, add new layer to the layerGroup
         if(this.get('showDrawingLayer')) {
@@ -146,6 +154,49 @@ export default BaseLayer.extend({
         delete this._eventHandlers[eventName];
       });
     }
-  }
+  },
+  
+  didInsertParent() {
+		this._super(...arguments);
+		this._addObservers();
+	},
+
+	willDestroyParent() {
+		this._removeObservers();
+		this._super(...arguments);
+	},
+
+	// Observe for when options change, so the control can be set with the new options
+	_addObservers() {
+		this._argObservers = {};
+
+		this._argObservers['draw'] = this._drawChanged();
+		this.addObserver('draw', this, this._argObservers['draw']);
+	},
+
+	_removeObservers() {
+		this.removeObserver('draw', this, this._argObservers['draw']);
+		this._argObservers = {};
+	},
+	
+	_drawChanged() {
+		let value = this.get('draw');
+
+			let _drawControl = this.get('_drawControl');
+			if(_drawControl) {
+				_drawControl.setDrawingOptions(value);	// Set draw options for all new shapes
+				
+				// // Set draw options for all previously drawn shapes
+				// let _drawingLayerGroup = this.get('_drawingLayerGroup');
+				// if(_drawingLayerGroup) {
+				// 	// Remove each layer, modify the options, then re-add it
+				// 	_drawingLayerGroup.eachLayer(function(layer) {
+				// 		_drawingLayerGroup.removeLayer(layer);
+				// 		this._applyOptionsToLayer(layer);
+				// 		_drawingLayerGroup.addLayer(layer);
+				// 	}, this);
+				// }
+			}
+	}
 
 });
