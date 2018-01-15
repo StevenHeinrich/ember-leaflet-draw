@@ -170,7 +170,7 @@ export default BaseLayer.extend({
 	_addObservers() {
 		this._argObservers = {};
 
-		this._argObservers['draw'] = this._drawChanged();
+		this._argObservers['draw'] = function() { this._drawChanged(); };
 		this.addObserver('draw', this, this._argObservers['draw']);
 	},
 
