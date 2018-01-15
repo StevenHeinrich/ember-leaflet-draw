@@ -103,8 +103,8 @@ export default BaseLayer.extend({
   // Helper method to set layer.options to draw config
 	_applyOptionsToLayer(layer) {
 		let shapeOptions = {};
-		// Currently just uses options for polygon, since we can't tell what shape it is (or can we?)
-    shapeOptions = this.get('draw.polygon.shapeOptions');
+		// Currently just uses its own options set, since we can't tell what shape it is (or can we?)
+    shapeOptions = this.get('draw.initial.shapeOptions');
 
 		let drawConfig = Ember.$.extend({}, layer.options, shapeOptions);
 		layer.options = drawConfig;
