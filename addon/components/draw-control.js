@@ -50,6 +50,16 @@ export default BaseLayer.extend({
     if(this.get('showDrawingLayer')) {
       drawingLayerGroup = new this.L.FeatureGroup();
       const map = this.get('parentComponent._layer');
+      
+      // If supplied, draw initial features onto editable feature group
+			let initialFeatures = this.get('initialFeatures');	// L.geoJson()
+			if(initialFeatures) {
+				initialFeatures.eachLayer(function(layer) {
+					this._applyOptionsToLayer(layer);
+					layer.addTo(drawingLayerGroup);
+				}, this);
+			}
+      
       drawingLayerGroup.addTo(map);
     }
     return drawingLayerGroup;
@@ -89,6 +99,16 @@ export default BaseLayer.extend({
       }
     }
   },
+  
+  // Helper method to set layer.options to draw config
+	_applyOptionsToLayer(layer) {
+		let shapeOptions = {};
+		// Currently just uses options for polygon, since we can't tell what shape it is (or can we?)
+    shapeOptions = this.get('draw.polygon.shapeOptions');
+
+		let drawConfig = Ember.$.extend({}, layer.options, shapeOptions);
+		layer.options = drawConfig;
+	},
 
   _addEventListeners() {
     this._eventHandlers = {};
